@@ -7,50 +7,9 @@ from scipy.sparse import csr_matrix,issparse
 
 from ..configuration import SKM
 from ..logging import logger_manager as lm
-
-"""IO functions for MERFISH technology.
-"""
-def read_merfish_as_anndata(path: str) -> AnnData:
-    """Read MERFISH matrix as AnnData.
-
-    Args:
-        matrix_dir: Path to matrix file.
-
-    Returns:
-        AnnData of cell x genes.
-    """
-    lm.main_info("Constructing count matrix.")
-    X = pd.read_csv(path, index_col=0)
-    obs = pd.DataFrame(index=X.index)
-    var = pd.DataFrame(index=X.columns)
-
-    return AnnData(X=csr_matrix(X, dtype=np.uint16), obs=obs, var=var)
-
-
-def read_merfish_positions_as_dataframe(path: str) -> pd.DataFrame:
-    """Read MERFISH cell positions CSV as dataframe.
-
-    Args:
-        path: Path to file
-
-    Returns:
-        DataFrame containing cell positions.
-    """
-    
-    df_loc = pd.read_csv(path, index_col=0, usecols=[0, 1, 3, 4])
-   
-    df_loc.columns = ["fov", "x", "y"]
-    df_loc = df_loc.astype({"fov": np.int16, "x": np.float32, "y": np.float32})
-    
-    offset = min(df_loc["x"].min(), df_loc["y"].min())
-    df_loc["x"] = df_loc["x"] - offset
-    df_loc["y"] = df_loc["y"] - offset
-
-    return df_loc
-
 def read_merfish(
     path: str,
-    positions_path: str,
+    meta_path: str,
 ) -> AnnData:
     """Read MERFISH data as AnnData.
 
@@ -59,8 +18,21 @@ def read_merfish(
         positions_path: Path to csv containing spatial coordinates
     """
 
-    adata = read_merfish_as_anndata(path)
-    df_loc = read_merfish_positions_as_dataframe(positions_path)
+    lm.main_info("Constructing count matrix.")
+    X = pd.read_csv(path, index_col=0)
+    obs = pd.DataFrame(index=X.index)
+    var = pd.DataFrame(index=X.columns)
+
+    adata = AnnData(X=csr_matrix(X, dtype=np.uint16), obs=obs, var=var)
+
+    df_loc = pd.read_csv(meta_path, index_col=0, usecols=[0, 1, 3, 4])
+   
+    df_loc.columns = ["fov", "x", "y"]
+    df_loc = df_loc.astype({"fov": np.int16, "x": np.float32, "y": np.float32})
+    
+    offset = min(df_loc["x"].min(), df_loc["y"].min())
+    df_loc["x"] = df_loc["x"] - offset
+    df_loc["y"] = df_loc["y"] - offset
 
     common_ids = np.intersect1d(df_loc.index, adata.obs_names)
     adata = adata[common_ids, :]
