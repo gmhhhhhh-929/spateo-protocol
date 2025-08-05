@@ -1,5 +1,5 @@
-"""IO functions for MERFISH technology.
-"""
+"""IO functions for MERFISH technology."""
+"""https://github.com/lhqing/merfishing/tree/main/docs/user_guide/dummy_experiment/output/region_0"""
 import numpy as np
 import pandas as pd
 from anndata import AnnData
