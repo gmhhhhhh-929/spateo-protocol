@@ -1,5 +1,5 @@
-"""dataset from https://singlecell.broadinstitute.org/single_cell/study/SCP815/highly-sensitive-spatial-transcriptomics-at-near-cellular-resolution-with-slide-seqv2#study-download"""
 """IO functions for Slide-seq technology."""
+"""dataset from https://singlecell.broadinstitute.org/single_cell/study/SCP815/highly-sensitive-spatial-transcriptomics-at-near-cellular-resolution-with-slide-seqv2#study-download"""
 from typing import NamedTuple, Optional
 
 import numpy as np
