@@ -16,7 +16,7 @@ def read_merfish(
 
     Args:
         path: Path to matrix files
-        meta_path: Path to csv containing spatial coordinates
+        positions_path: Path to csv containing spatial coordinates
     """
 
     lm.main_info("Constructing count matrix.")
