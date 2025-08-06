@@ -14,9 +14,14 @@ def read_merfish(
 ) -> AnnData:
     """Read MERFISH data as AnnData.
 
-    Args:
+    Parameters:
+    -------------------------------------------------------------
         path: Path to matrix files
         positions_path: Path to csv containing spatial coordinates
+
+    Returns:
+    --------------------------------------------------------------
+        AnnData object containing the merfish data.
     """
 
     lm.main_info("Constructing count matrix.")
