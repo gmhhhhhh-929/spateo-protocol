@@ -24,7 +24,7 @@ def openST(
 
     Returns:
     --------------------------------------------------------
-        AnnData: The constructed AnnData object with spatial transcriptomics data.
+        AnnData object containing the openST data.
     """
 
     with h5py.File(path, "r") as f:
