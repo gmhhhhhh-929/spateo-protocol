@@ -34,12 +34,16 @@ def visium(
     ) -> AnnData:
     """Read 10x Visium data as AnnData.
 
-    Args:
+    Parameters:
+    ----------------------------------------------------------------------------
         matrix_dir: Directory containing matrix files
             (barcodes.tsv.gz, features.tsv.gz, matrix.mtx.gz)
         meta_path: Path to CSV containing spatial coordinates
         version: 10x technology version. Currently only used to set the scale and
             scale units of each unit coordinate. This may change in the future.
+    Returns:
+    -----------------------------------------------------------------------------
+        AnnData object containing the 10x visium data.
     """
 
     """Read 10x Visium matrix directory as AnnData. """
