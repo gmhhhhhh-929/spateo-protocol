@@ -17,19 +17,20 @@ def starmap_plus(
     """ Read StarMAP Plus output files and construct an AnnData object.
    
     Parameters:
-    -----------
+    --------------------------------------------------------------------------
         folder_path:str
             Path to the folder containing STARmap Plus data files.
             The folder must include three files whose filenames contain the following keywords:
             - "spatial" --------> CSV file with spatial coordinates (e.g., well_2_5_spatial.csv)
             - "spot_meta"-------> CSV file with spot or cell metadata (e.g., well_2_5_spot_meta.csv)
             - "raw_expression_pd"------> CSV file with gene expression matrix (e.g., well_2_5processed_expression_pd.csv)
+            
     Returns:
-    --------
+    ----------------------------------------------------------------------------
         AnnData object containing the STARmap Plus data.
         
     Raises:
-    ------
+    -----------------------------------------------------------------------------
     FileNotFoundError
         If any of the required files are not found in the folder.
     """
