@@ -17,13 +17,18 @@ def seqfish(
 ) -> AnnData:
     """Read seqFISH data as AnnData.
 
-    Args:
+    Parameters:
+    ------------------------------------------------------------------
         path: Path to seqFISH digital expression matrix CSV.
         meta_path: Path to CSV file containing cell centroid locations.
         fov_offset: a dataframe contain offset of each fov, for example,
             {'fov':[fov_1, ..], 'x_offset':[x_offset_1, ..], 'y_offset':[y_offset_1, ..]}
         accumulate_x: whether to accumulate x_offset
         accumulate_y: whether to accumulate y_offset
+    
+    Returns:
+    -------------------------------------------------------------------
+        AnnData object containing the Seqfish data.
     """
 
     """Read seqFISH expression matrix as dataframe."""
