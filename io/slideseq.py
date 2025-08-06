@@ -33,12 +33,17 @@ def slideseq(
 ) -> AnnData:
     """Read Slide-seq data as AnnData.
 
-    Args:
+    Parameters:
+    ----------------------------------------------------------------------
         path: Path to Slide-seq digital expression matrix CSV.
         beads_path: Path to CSV file containing bead locations.
         binsize: Size of pixel bins.
         version: Slideseq technology version. Currently only used to set the scale and
             scale units of each unit coordinate. This may change in the future.
+            
+    Returns:
+    -----------------------------------------------------------------------
+        AnnData object containing the slideseq data.
     """
 
     """Read a Slide-seq digital expression matrix."""
